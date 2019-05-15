@@ -1,25 +1,27 @@
-- sudo: yes
+- name: get nginx rpmkey
+  become: yes
   rpm_key:
     key: "{{ nginx_signing_key }}"
 
 
 - name: add nginx repository
-  sudo: yes
-  yum_repository: 
+  become: yes
+  yum_repository:
     name: nginx
     baseurl: "{{ nginx_base_repository }}"
     description: nginx repository
     enabled: yes
     gpgcheck: yes
 
-- sudo: yes
+- name: install nginx
+  become: yes
   package:
     name: nginx
     state: present
   notify: start nginx
 
 - name: override default home page
-  sudo: yes
+  become: yes
   copy:
     content: |
       <!DOCTYPE html>
@@ -37,5 +39,3 @@
       </body>
       </html>
     dest: /usr/share/nginx/html/index.html
-
-
