@@ -1,4 +1,6 @@
 ---
+- import_playbook: exporter.yml
+
 - name: get nginx rpmkey
   become: true
   rpm_key:

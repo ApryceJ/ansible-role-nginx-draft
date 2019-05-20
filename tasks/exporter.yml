@@ -1,0 +1,36 @@
+---
+- hosts: all
+
+  tasks:
+#Use group to create nginx-exp system group.
+   - name: create group nginx-exp
+     become: yes
+     group:
+       name: "{{ nginx_group }}"
+       state: present
+#Use user to create nginx-exp system user, a member of nginx-exp group.
+   - name: create group nginx-exp
+     become: yes
+     user:
+       name: "{{ nginx_user }}"
+       state: present
+       group: nginz-exp
+#Use get_url to download nginx-exporter. Releases can be found in https://github.com/nginxinc/nginx-prometheus-exporter/releases.
+   - name: Download foo.conf
+     get_url:
+       url: https://github.com/nginxinc/nginx-prometheus-exporter/releases
+       dest: /
+       mode: '0440'
+#Use unarchive to unpack the downloaded exporter.
+   - name: Unarchive a file that is already on the remote machine
+     unarchive:
+       src: /nginx-prometheus-exporter
+       dest: /usr/local/bin/
+       remote_src: yes
+#Use template to create /etc/systemd/system/nginx_exporter.service file with the following content:
+   - name: Template a file to /etc/files.conf
+     become: true
+     template:
+       src: nginx-exporter.j2
+       dest: /etc/systemd/system/
+       mode: '0644'
