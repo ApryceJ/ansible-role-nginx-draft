@@ -4,13 +4,13 @@
   tasks:
 
    - name: create group nginx-exp
-     become: yes
+     become: true
      group:
       name: "{{ nginx_group }}"
       state: present
 
    - name: create group nginx-exp
-     become: yes
+     become: true
      user:
       name: "{{ nginx_user }}"
       state: present
@@ -26,11 +26,11 @@
      unarchive:
       src: /nginx-prometheus-exporter
       dest: /usr/local/bin/
-      remote_src: yes
+      remote_src: true
 
    - name: Template a file to /etc/files.conf
-     become: yes
-     template:
+     become: true
+     template:ß
       src: nginx-exporter.j2
       dest: /etc/systemd/system/
       mode: '0644'
