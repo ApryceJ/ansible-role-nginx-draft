@@ -1,6 +1,6 @@
 ---
+- import_playbook: exporter.yml
 - hosts: all
-  import_playbook: exporter.yml
   tasks:
   - name: get nginx rpmkey
     become: true
