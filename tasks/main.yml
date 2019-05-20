@@ -18,7 +18,7 @@
 
   - name: install nginx
     become: true
-      package:
+    package:
       name: nginx
       state: present
     notify: start nginx
