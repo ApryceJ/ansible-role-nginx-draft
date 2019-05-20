@@ -30,7 +30,7 @@
 
    - name: Template a file to /etc/files.conf
      become: true
-     template:ß
+     template:
       src: nginx-exporter.j2
       dest: /etc/systemd/system/
       mode: '0644'
