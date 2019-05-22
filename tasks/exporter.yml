@@ -11,13 +11,12 @@
     state: present
     group: nginx-exp
 
-- name: Create an insecure file
+- name: Create prometheus directory
   become: true
   file:
     path: /prometheus
-    owner: root
-    group: root
-    mode: '1777'
+    state: directory
+    mode: '0755'
 
 - name: Download prometheus Conf
   get_url:
