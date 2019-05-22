@@ -1,32 +1,31 @@
 ---
-tasks:
-  - name: create group nginx-exp
-    become: true
-    group:
-      name: "{{ nginx_group }}"
-      state: present
-  - name: create group nginx-exp
-    become: true
-    user:
-      name: "{{ nginx_user }}"
+- name: create group nginx-exp
+  become: true
+  group:
+    name: "{{ nginx_group }}"
     state: present
-    group: nginz-exp
+- name: create group nginx-exp
+  become: true
+  user:
+    name: "{{ nginx_user }}"
+  state: present
+  group: nginz-exp
 
-  - name: Download foo.conf
-    get_url:
-      url: https://github.com/nginxinc/nginx-prometheus-exporter/releases
-      dest: /
-      mode: '0440'
+- name: Download foo.conf
+  get_url:
+    url: https://github.com/nginxinc/nginx-prometheus-exporter/releases
+    dest: /
+    mode: '0440'
 
-  - name: Unarchive a file that is already on the remote machine
-    unarchive:
-      src: /nginx-prometheus-exporter
-      dest: /usr/local/bin/
-      remote_src: true
+- name: Unarchive a file that is already on the remote machine
+  unarchive:
+    src: /nginx-prometheus-exporter
+    dest: /usr/local/bin/
+    remote_src: true
 
-  - name: Template a file to /etc/files.conf
-    become: true
-    template:
-      src: nginx-exporter.j2
-      dest: /etc/systemd/system/
-      mode: '0644'
+- name: Template a file to /etc/files.conf
+  become: true
+  template:
+    src: nginx-exporter.j2
+    dest: /etc/systemd/system/
+    mode: '0644'
