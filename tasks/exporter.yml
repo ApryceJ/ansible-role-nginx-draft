@@ -9,7 +9,7 @@
   user:
     name: "{{ nginx_user }}"
     state: present
-    group: nginz-exp
+    group: nginx-exp
 
 - name: Download foo.conf
   get_url:
