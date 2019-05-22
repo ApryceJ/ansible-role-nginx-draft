@@ -11,15 +11,23 @@
     state: present
     group: nginx-exp
 
-- name: Download foo.conf
+- name: Create an insecure file
+  become: true
+  file:
+    path: /prometheus
+    owner: root
+    group: root
+    mode: '1777'
+
+- name: Download prometheus Conf
   get_url:
     url: https://github.com/nginxinc/nginx-prometheus-exporter/releases
-    dest: /
+    dest: /prometheus
     mode: '0440'
 
 - name: Unarchive a file that is already on the remote machine
   unarchive:
-    src: /nginx-prometheus-exporter
+    src: /prometheus/nginx-prometheus-exporter
     dest: /usr/local/bin/
     remote_src: true
 
