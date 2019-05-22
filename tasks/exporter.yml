@@ -16,17 +16,18 @@
   file:
     path: /prometheus
     state: directory
-    mode: '0755'
+    mode: '1777'
 
 - name: Download prometheus Conf
   get_url:
-    url: https://github.com/nginxinc/nginx-prometheus-exporter/releases
-    dest: /prometheus
-    mode: '0440'
+    url: https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v0.3.0/nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
+    dest: /prometheus/
+    mode: '0777'
 
 - name: Unarchive a file that is already on the remote machine
+  become: true
   unarchive:
-    src: /prometheus/nginx-prometheus-exporter
+    src: /prometheus/nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
     dest: /usr/local/bin/
     remote_src: true
 
