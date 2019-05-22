@@ -8,8 +8,8 @@
   become: true
   user:
     name: "{{ nginx_user }}"
-  state: present
-  group: nginz-exp
+    state: present
+    group: nginz-exp
 
 - name: Download foo.conf
   get_url:
