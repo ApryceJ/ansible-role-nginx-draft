@@ -35,11 +35,11 @@
   become: true
   template:
     src: nginx-exporter.j2
-    dest: /etc/systemd/system/nginx-exporter
+    dest: /etc/systemd/system/nginx-exporter.service
     mode: '0644'
     newline_sequence: '\r\n'
 
 - name: Make sure a service is running
   systemd:
     state: started
-    name: nginx-exporter
+    name: nginx-exporter.service
