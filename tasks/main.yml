@@ -20,7 +20,7 @@
     name: nginx
     state: present
   notify: start nginx
-- name: Truning on substatus
+- name: Turning on Substatus
   become: true
   copy:
     content: |
