@@ -1,5 +1,4 @@
 ---
-
 - name: get nginx rpmkey
   become: true
   rpm_key:
