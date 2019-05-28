@@ -39,7 +39,7 @@
     mode: '0644'
     newline_sequence: '\r\n'
 
-- name: Make sure a service is running
+- name: Make sure exporter is running
   systemd:
     state: started
     name: nginx-exporter.service
