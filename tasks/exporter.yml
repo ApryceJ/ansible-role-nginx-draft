@@ -40,6 +40,7 @@
     newline_sequence: '\r\n'
 
 - name: Make sure exporter is running
+  become: true
   systemd:
     state: started
     name: nginx-exporter.service
