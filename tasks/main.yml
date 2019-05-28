@@ -1,4 +1,5 @@
 ---
+- include: exporter.yml
 - name: get nginx rpmkey
   become: true
   rpm_key:
@@ -41,7 +42,7 @@
       </html>
     dest: /usr/share/nginx/html/index.html
 
-- name: Check that a page returns a status 200 and fail if the word AWESOME is not in the page contents
+- name: Check that a page returns a status 200 and fail if not
   uri:
     url: http://localhost
     method: GET
@@ -56,5 +57,3 @@
     return_content: yes
   register: this
   failed_when: "'nginx_up 1' not in this.content"
-
-- include: exporter.yml
