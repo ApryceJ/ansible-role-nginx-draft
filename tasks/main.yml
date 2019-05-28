@@ -19,7 +19,7 @@
   package:
     name: nginx
     state: present
-  
+
 - name: Turning on Substatus
   become: true
   copy:
@@ -68,7 +68,12 @@
       </body>
       </html>
     dest: /usr/share/nginx/html/index.html
-  notify: start nginx
+
+- name: start / restart nginx
+  become: true
+  service:
+    name: nginx
+    state: restarted
 
 - include: exporter.yml
 
